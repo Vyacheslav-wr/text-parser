@@ -42,13 +42,16 @@ public class TextService {
                     word.add(symbol);
                 }
                 if(pattern2.matcher(sb.toString()).matches()){
-                    sentence.add(word);
+                    if(!word.getSymbols().isEmpty()){
+                        sentence.add(word);
+                    }
                     symbol = new Symbol(element);
                     symbol.setPunctuationMark(true);
                     word = new Word();
                     word.add(symbol);
                     sentence.add(word);
                     word = new Word();
+                    symbol = new Symbol();
                 }
                 if(pattern1.matcher(sb.toString()).matches()){
                     symbol = new Symbol(element);

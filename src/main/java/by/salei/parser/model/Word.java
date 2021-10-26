@@ -23,15 +23,6 @@ public class Word implements Component<Symbol>{
     }
 
     @Override
-    public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();
-        for(Symbol symbol : symbols){
-            stringBuffer.append(symbol);
-        }
-        return stringBuffer.toString();
-    }
-
-    @Override
     public void add(Symbol symbol) {
         symbols.add(symbol);
     }
@@ -39,5 +30,19 @@ public class Word implements Component<Symbol>{
     @Override
     public void delete(Symbol symbol) {
         symbols.remove(symbol);
+    }
+
+    @Override
+    public Symbol getElement(Integer index) {
+        return symbols.get(index);
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        for(Symbol symbol : symbols){
+            stringBuffer.append(symbol);
+        }
+        return stringBuffer.toString();
     }
 }

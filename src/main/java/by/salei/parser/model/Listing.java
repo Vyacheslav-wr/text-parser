@@ -23,16 +23,6 @@ public class Listing implements Component<Sentence>{
     }
 
     @Override
-    public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(" ");
-        for(Sentence sentence : sentences){
-            stringBuffer.append(sentence);
-        }
-        return stringBuffer.toString();
-    }
-
-    @Override
     public void add(Sentence sentence) {
         sentences.add(sentence);
     }
@@ -41,4 +31,19 @@ public class Listing implements Component<Sentence>{
     public void delete(Sentence sentence) {
         sentences.remove(sentence);
     }
+
+    @Override
+    public Sentence getElement(Integer index) {
+        return sentences.get(index);
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        for(Sentence sentence : sentences){
+            stringBuffer.append(sentence);
+        }
+        return stringBuffer.toString();
+    }
+
 }

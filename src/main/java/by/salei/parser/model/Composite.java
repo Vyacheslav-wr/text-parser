@@ -32,6 +32,11 @@ public class Composite implements Component<Component>{
     }
 
     @Override
+    public Component getElement(Integer index) {
+        return components.get(index);
+    }
+
+    @Override
     public String toString() {
         StringBuffer stringBuffer = new StringBuffer();
         for(Component component : components){

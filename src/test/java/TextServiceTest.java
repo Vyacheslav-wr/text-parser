@@ -1,3 +1,4 @@
+import by.salei.parser.comparator.SentenceComparator;
 import by.salei.parser.model.Composite;
 import by.salei.parser.service.TextService;
 import org.junit.jupiter.api.Assertions;

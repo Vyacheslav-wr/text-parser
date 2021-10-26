@@ -29,13 +29,6 @@ public class Symbol implements Component<Symbol>{
     }
 
     @Override
-    public String toString() {
-        StringBuffer sb = new StringBuffer();
-        sb.append(symbol);
-        return sb.toString();
-    }
-
-    @Override
     public void add(Symbol symbol) {
         //Do nothing
     }
@@ -43,5 +36,17 @@ public class Symbol implements Component<Symbol>{
     @Override
     public void delete(Symbol symbol) {
         //Do nothing
+    }
+
+    @Override
+    public Symbol getElement(Integer index) {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        sb.append(symbol);
+        return sb.toString();
     }
 }

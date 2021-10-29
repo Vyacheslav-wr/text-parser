@@ -1,6 +1,8 @@
 package by.salei.parser.service;
 
 import by.salei.parser.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,6 +18,7 @@ public class TextService {
     private final Pattern pattern3 = Pattern.compile("[а-яА-Яa-zA-Z]");
     private final Pattern pattern4 = Pattern.compile("\\n");
     private final Pattern pattern5 = Pattern.compile("\\s");
+    Logger LOGGER = LoggerFactory.getLogger(TextService.class);
 
     public TextService(Composite composite, String filePath) {
         this.composite = composite;
@@ -23,9 +26,9 @@ public class TextService {
     }
 
     public Composite parse(){
+        LOGGER.info("SERVICE: parsing text: {}", path);
         try(FileReader fr = new FileReader(path)){
             int c;
-            Symbol symbol = new Symbol();
             Word word = new Word();
             Sentence sentence = new Sentence();
             Listing listing = new Listing();
@@ -37,26 +40,19 @@ public class TextService {
                 element = (char)c;
                 sb.append(element);
                 if(pattern3.matcher(sb.toString()).matches()){
-                    symbol = new Symbol(element);
-                    symbol.setPunctuationMark(false);
-                    word.add(symbol);
+                    word.add(element);
                 }
                 if(pattern2.matcher(sb.toString()).matches()){
                     if(!word.getSymbols().isEmpty()){
                         sentence.add(word);
                     }
-                    symbol = new Symbol(element);
-                    symbol.setPunctuationMark(true);
                     word = new Word();
-                    word.add(symbol);
+                    word.add(element);
                     sentence.add(word);
                     word = new Word();
-                    symbol = new Symbol();
                 }
                 if(pattern1.matcher(sb.toString()).matches()){
-                    symbol = new Symbol(element);
-                    symbol.setPunctuationMark(true);
-                    word.add(symbol);
+                    word.add(element);
                     sentence.add(word);
                     listing.add(sentence);
                     sentence = new Sentence();
@@ -69,31 +65,30 @@ public class TextService {
                     }
                 }
                 if(pattern4.matcher(sb.toString()).matches()){
-                    symbol = new Symbol(element);
                     if(!word.getSymbols().isEmpty()){
                         sentence.add(word);
                         word = new Word();
                     }
-                   word.add(symbol);
+                   word.add(element);
                     sentence.add(word);
                     word = new Word();
-                    symbol = new Symbol();
                 }
             }
             composite.add(listing);
         }
         catch (IOException ex){
-
+            LOGGER.warn("SERVICE: Cannot open file to read: {}",path);
         }
         return composite;
     }
 
     public void writeToFile(Composite composite1){
+        LOGGER.info("SERVICE: open file to read: {}", path);
         try(FileWriter fr = new FileWriter("src/main/resources/RestoredText.txt")){
             fr.write(composite.toString());
         }
         catch (IOException ex){
-
+            LOGGER.warn("SERVICE: Cannot open file to write: {}",path);
         }
     }
 

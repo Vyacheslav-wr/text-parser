@@ -1,0 +1,18 @@
+<Configuration status="info">
+    <Appenders>
+        <File name="file" fileName="app.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="file"/>
+        </Root>
+    </Loggers>
+    <Logger name="by.salei.parser" level="info" additivity="false">
+        <AppenderRef ref="file"/>
+    </Logger>
+    <Logger name="by.salei.parser.service" level="warn" additivity="false">
+        <AppenderRef ref="file"/>
+    </Logger>
+</Configuration>

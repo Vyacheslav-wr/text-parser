@@ -1,48 +1,53 @@
 package by.salei.parser.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Word implements Component<Symbol>{
+public class Word implements Component<Character>{
 
-    private List<Symbol> symbols = new ArrayList<>();
-
-    public List<Symbol> getSymbols() {
+    private List<Character> symbols = new ArrayList<>();
+    public List<Character> getSymbols() {
         return symbols;
     }
+    Logger LOGGER = LoggerFactory.getLogger(Word.class);
 
-    public void setSymbols(ArrayList<Symbol> symbols) {
+    public void setSymbols(ArrayList<Character> symbols) {
         this.symbols = symbols;
     }
 
     public Word() {
     }
 
-    public Word(ArrayList<Symbol> symbols) {
+    public Word(ArrayList<Character> symbols) {
         this.symbols = symbols;
     }
 
     @Override
-    public void add(Symbol symbol) {
+    public void add(Character symbol) {
+        LOGGER.info("MODEL: add symbol to symbols list");
         symbols.add(symbol);
     }
 
     @Override
-    public void delete(Symbol symbol) {
+    public void delete(Character symbol) {
+        LOGGER.info("MODEL: delete symbol from list");
         symbols.remove(symbol);
     }
 
     @Override
-    public Symbol getElement(Integer index) {
+    public Character getElement(Integer index) {
         return symbols.get(index);
     }
 
     @Override
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();
-        for(Symbol symbol : symbols){
-            stringBuffer.append(symbol);
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Character symbol : symbols){
+            stringBuilder.append(symbol);
         }
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 }

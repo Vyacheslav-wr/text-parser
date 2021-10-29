@@ -1,15 +1,18 @@
 package by.salei.parser.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Listing implements Component<Sentence>{
 
     private List<Sentence> sentences = new ArrayList<>();
-
     public List<Sentence> getSentences() {
         return sentences;
     }
+    private final Logger LOGGER = LoggerFactory.getLogger(Listing.class);
 
     public void setSentences(ArrayList<Sentence> sentences) {
         this.sentences = sentences;
@@ -24,11 +27,13 @@ public class Listing implements Component<Sentence>{
 
     @Override
     public void add(Sentence sentence) {
+        LOGGER.info("MODEL: add sentence to sentences list");
         sentences.add(sentence);
     }
 
     @Override
     public void delete(Sentence sentence) {
+        LOGGER.info("MODEL: delete sentence from sentences list");
         sentences.remove(sentence);
     }
 
@@ -39,11 +44,11 @@ public class Listing implements Component<Sentence>{
 
     @Override
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         for(Sentence sentence : sentences){
-            stringBuffer.append(sentence);
+            stringBuilder.append(sentence);
         }
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 
 }

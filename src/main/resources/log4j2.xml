@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info">
     <Appenders>
         <File name="file" fileName="app.log">
@@ -5,14 +6,14 @@
         </File>
     </Appenders>
     <Loggers>
+        <Logger name="by.salei.parser" level="info" additivity="false">
+            <AppenderRef ref="file"/>
+        </Logger>
+        <Logger name="by.salei.parser.service" level="warn" additivity="false">
+            <AppenderRef ref="file"/>
+        </Logger>
         <Root level="info">
             <AppenderRef ref="file"/>
         </Root>
     </Loggers>
-    <Logger name="by.salei.parser" level="info" additivity="false">
-        <AppenderRef ref="file"/>
-    </Logger>
-    <Logger name="by.salei.parser.service" level="warn" additivity="false">
-        <AppenderRef ref="file"/>
-    </Logger>
 </Configuration>

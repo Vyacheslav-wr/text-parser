@@ -1,18 +1,19 @@
-import by.salei.parser.comparator.SentenceComparator;
+package service;
+
 import by.salei.parser.model.Composite;
-import by.salei.parser.service.TextService;
+import by.salei.parser.service.CompositeService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TextServiceTest {
+public class CompositeServiceTest {
 
     @Test
     public void parseTest(){
         Composite composite = new Composite();
-        TextService textService = new TextService(composite,"src/main/resources/Text.txt");
-        Composite composite2 = textService.parse();
+        CompositeService compositeService = new CompositeService(composite,"src/main/resources/Text.txt");
+        Composite composite2 = compositeService.parse();
         System.out.println(composite2.getComponents().toString());
-        textService.writeToFile(composite2);
+        compositeService.writeToFile(composite2);
         Assertions.assertEquals(1,composite2.getComponents().size());
     }
 }

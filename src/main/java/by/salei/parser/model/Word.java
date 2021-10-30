@@ -9,10 +9,11 @@ import java.util.List;
 public class Word implements Component<Character>{
 
     private List<Character> symbols = new ArrayList<>();
+    Logger LOGGER = LoggerFactory.getLogger(Word.class);
+
     public List<Character> getSymbols() {
         return symbols;
     }
-    Logger LOGGER = LoggerFactory.getLogger(Word.class);
 
     public void setSymbols(ArrayList<Character> symbols) {
         this.symbols = symbols;

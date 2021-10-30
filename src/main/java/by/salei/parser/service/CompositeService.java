@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
-public class TextService {
+public class CompositeService {
 
     private final Composite composite;
     private final String path;
@@ -18,9 +18,9 @@ public class TextService {
     private final Pattern pattern3 = Pattern.compile("[а-яА-Яa-zA-Z]");
     private final Pattern pattern4 = Pattern.compile("\\n");
     private final Pattern pattern5 = Pattern.compile("\\s");
-    Logger LOGGER = LoggerFactory.getLogger(TextService.class);
+    Logger LOGGER = LoggerFactory.getLogger(CompositeService.class);
 
-    public TextService(Composite composite, String filePath) {
+    public CompositeService(Composite composite, String filePath) {
         this.composite = composite;
         this.path = filePath;
     }
@@ -85,7 +85,7 @@ public class TextService {
     public void writeToFile(Composite composite1){
         LOGGER.info("SERVICE: open file to read: {}", path);
         try(FileWriter fr = new FileWriter("src/main/resources/RestoredText.txt")){
-            fr.write(composite.toString());
+            fr.write(composite1.toString());
         }
         catch (IOException ex){
             LOGGER.warn("SERVICE: Cannot open file to write: {}",path);

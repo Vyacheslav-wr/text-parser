@@ -1,3 +1,4 @@
+package comparator;
 
 import by.salei.parser.comparator.SentenceComparator;
 import by.salei.parser.model.*;
@@ -12,11 +13,11 @@ public class SentenceComparatorTest {
     @Test
     public void compareTest(){
         Sentence sentence = new Sentence();
-        ArrayList<Character> chare  =  new ArrayList(Arrays.asList("w", "o", "r", "d"));
-        Word word = new Word(chare);
+        ArrayList<Character> chars  =  new ArrayList(Arrays.asList("w", "o", "r", "d"));
+        Word word = new Word(chars);
         Sentence sentence1 = new Sentence();
         ArrayList<Character> chares  =  new ArrayList(Arrays.asList("w", "o", "r", "d"));
-        Word word1 = new Word(chare);
+        Word word1 = new Word(chars);
         SentenceComparator sc = new SentenceComparator();
 
         sentence.add(word);

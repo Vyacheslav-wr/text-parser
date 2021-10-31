@@ -13,10 +13,6 @@ public class Composite implements Component<Component>{
     }
     private final Logger LOGGER = LoggerFactory.getLogger(Composite.class);
 
-    public void setComponents(ArrayList<Component> components) {
-        this.components = components;
-    }
-
     public Composite() {
     }
 

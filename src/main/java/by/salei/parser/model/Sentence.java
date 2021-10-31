@@ -17,10 +17,6 @@ public class Sentence implements Component<Word>{
         return words;
     }
 
-    public void setWords(ArrayList<Word> words) {
-        this.words = words;
-    }
-
     public Sentence() {
     }
 

@@ -14,10 +14,6 @@ public class Listing implements Component<Sentence>{
     }
     private final Logger LOGGER = LoggerFactory.getLogger(Listing.class);
 
-    public void setSentences(ArrayList<Sentence> sentences) {
-        this.sentences = sentences;
-    }
-
     public Listing() {
     }
 

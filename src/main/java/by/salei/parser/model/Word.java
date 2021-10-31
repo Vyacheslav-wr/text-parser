@@ -15,10 +15,6 @@ public class Word implements Component<Character>{
         return symbols;
     }
 
-    public void setSymbols(ArrayList<Character> symbols) {
-        this.symbols = symbols;
-    }
-
     public Word() {
     }
 

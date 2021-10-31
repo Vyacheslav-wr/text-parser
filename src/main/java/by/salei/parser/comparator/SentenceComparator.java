@@ -12,21 +12,9 @@ public class SentenceComparator implements Comparator<Sentence> {
 
     @Override
     public int compare(Sentence o1, Sentence o2) {
-        int size1 = o1.getWords().size();
-        int size2 = o2.getWords().size();
-        StringBuilder sb= new StringBuilder();
+        int size1 = evaluateSize(o1);
+        int size2 = evaluateSize(o2);
 
-        for(Word word : o1.getWords()){
-            sb.append(word.getSymbols().get(0));
-            if(pattern.matcher(sb.toString()).matches()){
-                size1--;
-            }
-        }
-        for(Word word : o2.getWords()){
-            if(pattern.matcher(sb.toString()).matches()){
-                size2--;
-            }
-        }
         if(size1 > size2){
             return 1;
         }
@@ -35,5 +23,18 @@ public class SentenceComparator implements Comparator<Sentence> {
             return -1;
         }
         return 0;
+    }
+
+    private int evaluateSize(Sentence sentence){
+        StringBuilder sb = new StringBuilder();
+        int size = sentence.getWords().size();
+
+        for(Word word : sentence.getWords()){
+            sb.append(word.getSymbols().get(0));
+            if(pattern.matcher(sb.toString()).matches()){
+                size--;
+            }
+        }
+        return size;
     }
 }

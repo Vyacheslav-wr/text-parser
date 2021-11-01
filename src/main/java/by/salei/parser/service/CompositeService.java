@@ -14,10 +14,9 @@ public class CompositeService {
     private final Composite composite;
     private final String path;
     private final Pattern pattern1 = Pattern.compile("[.!?;]");
-    private final Pattern pattern2 = Pattern.compile("[,:'()-]");
-    private final Pattern pattern3 = Pattern.compile("[а-яА-Яa-zA-Z]");
-    private final Pattern pattern4 = Pattern.compile("\\n");
-    private final Pattern pattern5 = Pattern.compile("\\s");
+    private final Pattern patternWord = Pattern.compile("[а-яА-Яa-zA-Z]|[,:'()-]");
+    private final Pattern patternNewLine = Pattern.compile("\\n");
+    private final Pattern patternSpace = Pattern.compile("\\s");
     Logger LOGGER = LoggerFactory.getLogger(CompositeService.class);
 
     public CompositeService(Composite composite, String filePath) {
@@ -39,17 +38,8 @@ public class CompositeService {
                 sb = new StringBuffer();
                 element = (char)c;
                 sb.append(element);
-                if(pattern3.matcher(sb.toString()).matches()){
+                if(patternWord.matcher(sb.toString()).matches()){
                     word.add(element);
-                }
-                if(pattern2.matcher(sb.toString()).matches()){
-                    if(!word.getSymbols().isEmpty()){
-                        sentence.add(word);
-                    }
-                    word = new Word();
-                    word.add(element);
-                    sentence.add(word);
-                    word = new Word();
                 }
                 if(pattern1.matcher(sb.toString()).matches()){
                     word.add(element);
@@ -58,13 +48,13 @@ public class CompositeService {
                     sentence = new Sentence();
                     word = new Word();
                 }
-                if(pattern5.matcher(sb.toString()).matches()){
+                if(patternSpace.matcher(sb.toString()).matches()){
                     if(!word.getSymbols().isEmpty()){
                     sentence.add(word);
                     word = new Word();
                     }
                 }
-                if(pattern4.matcher(sb.toString()).matches()){
+                if(patternNewLine.matcher(sb.toString()).matches()){
                     if(!word.getSymbols().isEmpty()){
                         sentence.add(word);
                         word = new Word();
